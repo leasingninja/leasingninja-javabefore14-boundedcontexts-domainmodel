@@ -17,7 +17,41 @@ public class Contract {
 	private final Car car;
 	private final Amount price;
 
-	private record Calculation(LeaseTerm leaseTerm, Interest interest, Amount installment) {}
+	private class Calculation {
+        private final LeaseTerm leaseTerm;
+        private final Interest interest;
+        private final Amount installment;
+
+        public Calculation(LeaseTerm leaseTerm, Interest interest, Amount installment) {
+            this.leaseTerm = leaseTerm;
+            this.interest = interest;
+            this.installment = installment;
+        }
+
+        public LeaseTerm leaseTerm() {
+            return this.leaseTerm;
+        }
+
+        public Interest interest() {
+            return this.interest;
+        }
+
+        public Amount installment() {
+            return this.installment;
+        }
+
+        public boolean equals(Object object) {
+            if (this == object) return true;
+            if (object == null || getClass() != object.getClass()) return false;
+            if (!super.equals(object)) return false;
+            Calculation that = (Calculation) object;
+            return java.util.Objects.equals(leaseTerm, that.leaseTerm) && java.util.Objects.equals(interest, that.interest) && java.util.Objects.equals(installment, that.installment);
+        }
+
+        public int hashCode() {
+            return java.util.Objects.hash(super.hashCode(), leaseTerm, interest, installment);
+        }
+    }
     private Optional<Calculation> calculation;
 
     private Optional<SignDate> signDate;
