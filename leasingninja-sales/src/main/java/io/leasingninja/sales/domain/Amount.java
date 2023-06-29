@@ -7,7 +7,7 @@ import org.jmolecules.ddd.annotation.ValueObject;
 public class Amount {
 
 	private final long amountInCents;
-	private final Currency currency; // TODO: Change from String to Currency
+	private final Currency currency;
 
 	private Amount(long amountInCents, Currency currency) {
 		this.amountInCents = amountInCents;
